@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>mvvm 框架演示</title>
+  </head>
+  <style>
+    #app {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <h1>这是一个 MVVM 框架示例</h1>
+    <div id="app">
+      <div class="wrapper">
+        <h2>{{name}}</h2>
+        <label for="">
+          设置姓名
+          <input v-model="name" type="text" />
+        </label>
+        <h2>{{age}}</h2>
+        <label for="">
+          设置年龄
+          <input v-model="age" type="text" />
+        </label>
+        <div class="button">
+          <button v-on:click="addLife">点我+1s</button>
+          <button v-on:click="removeLife">点我-1s</button>
+        </div>
+      </div>
+    </div>
+    <script src="./src/observer.js" charset="utf-8"></script>
+    <script src="./src/subject.js" charset="utf-8"></script>
+    <script src="./src/common.js" charset="utf-8"></script>
+    <script src="./src/compiler.js" charset="utf-8"></script>
+    <script src="./src/mvvm.js" charset="utf-8"></script>
+    <script>
+      var vm = new Mvvm({
+        el: "#app",
+        data: {
+          name: "长者",
+          age: 90,
+        },
+        methods: {
+          addLife() {
+            this.age += 1;
+          },
+          removeLife() {
+            this.age -= 1;
+          },
+        },
+      });
+      alert(`目前${vm.name}的年龄是${vm.age}岁`);
+    </script>
+  </body>
+</html>
